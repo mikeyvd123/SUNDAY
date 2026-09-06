@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUNDAY</title>
+    <meta
+      name="description"
+      content="A minimal Sunday-inspired landing page built with the provided font stylesheet."
+    />
+    <link rel="stylesheet" href="./sunday" />
+    <style>
+      :root {
+        --bg: #f6f1e8;
+        --panel: rgba(255, 255, 255, 0.58);
+        --panel-strong: rgba(255, 255, 255, 0.8);
+        --ink: #1d1b1a;
+        --muted: #5e564f;
+        --accent: #a86d4a;
+        --accent-soft: #dcc7b5;
+        --line: rgba(29, 27, 26, 0.13);
+        --shadow: rgba(62, 46, 36, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Instrument Sans", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(168, 109, 74, 0.14), transparent 22%),
+          linear-gradient(135deg, #f3ebdf 0%, #f8f6f2 42%, #efe6da 100%);
+        color: var(--ink);
+      }
+
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 40px auto;
+        padding: 32px 0 60px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 18px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 24px rgba(26, 22, 16, 0.04);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.76rem;
+      }
+
+      .brand-mark {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), #d9a06d);
+        box-shadow: 0 0 0 4px rgba(168, 109, 74, 0.12);
+      }
+
+      .nav {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      .nav a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+        margin-top: 42px;
+        align-items: stretch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        box-shadow: 0 18px 40px var(--shadow);
+        overflow: hidden;
+      }
+
+      .hero-copy {
+        padding: 42px 38px 36px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.32);
+        color: var(--muted);
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+      }
+
+      h1 {
+        margin: 24px 0 18px;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(3rem, 6vw, 5.8rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        font-weight: 500;
+      }
+
+      .lead {
+        max-width: 32rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 14px 22px;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button.primary {
+        background: var(--ink);
+        color: white;
+        box-shadow: 0 12px 24px rgba(29, 27, 26, 0.15);
+      }
+
+      .button.secondary {
+        background: rgba(255, 255, 255, 0.4);
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 34px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .stat strong {
+        display: block;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(1.7rem, 2vw, 2.4rem);
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .visual {
+        position: relative;
+        min-height: 520px;
+        padding: 20px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0.1)),
+          linear-gradient(135deg, rgba(214,186,166,0.8), rgba(170,111,88,0.26));
+      }
+
+      .art-card {
+        position: absolute;
+        inset: 16px 16px 14px 16px;
+        border-radius: 28px;
+        border: 1px solid rgba(255,255,255,0.55);
+        background: rgba(255,255,255,0.28);
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+      }
+
+      .art-card::before,
+      .art-card::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(4px);
+      }
+
+      .art-card::before {
+        width: 260px;
+        height: 260px;
+        right: -18px;
+        top: 46px;
+        background: rgba(131, 58, 33, 0.18);
+      }
+
+      .art-card::after {
+        width: 220px;
+        height: 220px;
+        left: -30px;
+        bottom: 30px;
+        background: rgba(243, 207, 170, 0.7);
+      }
+
+      .quote {
+        position: absolute;
+        left: 24px;
+        bottom: 24px;
+        right: 24px;
+        padding: 22px 20px 18px;
+        border-radius: 22px;
+        background: rgba(17, 14, 13, 0.68);
+        color: rgba(255,255,255,0.9);
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+      }
+
+      .quote p {
+        margin: 0;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+      }
+
+      .quote span {
+        display: block;
+        margin-top: 12px;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .lower-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 26px;
+      }
+
+      .feature {
+        padding: 30px 28px;
+      }
+
+      .feature h2 {
+        margin: 0 0 12px;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(1.9rem, 3vw, 2.7rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
+      }
+
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      @media (max-width: 840px) {
+        .hero,
+        .lower-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          border-radius: 20px;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .nav {
+          justify-content: center;
+        }
+
+        .visual {
+          min-height: 400px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Sunday</span>
+        </div>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#craft">Craft</a>
+          <a href="#notes">Notes</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="about">
+          <div class="panel hero-copy">
+            <div class="eyebrow">Mindful design</div>
+            <h1>Bring your next idea into focus.</h1>
+            <p class="lead">
+              Thoughtful, elevated work begins with calm structure and expressive details.
+              This small landing page pairs editorial typography with warm organic tones to
+              create a confident, modern story.
+            </p>
+
+            <div class="actions">
+              <a class="button primary" href="#craft">Explore the craft</a>
+              <a class="button secondary" href="#notes">Read the notes</a>
+            </div>
+
+            <div class="stats" aria-label="Key statistics">
+              <div class="stat">
+                <strong>08</strong>
+                <span>Brand themes</span>
+              </div>
+              <div class="stat">
+                <strong>24h</strong>
+                <span>Concept cycle</span>
+              </div>
+              <div class="stat">
+                <strong>∞</strong>
+                <span>Creative range</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel visual" aria-label="Decorative presentation panel">
+            <div class="art-card" aria-hidden="true"></div>
+            <div class="quote">
+              <p>“Design should feel like a quiet exhale.”</p>
+              <span>Studio note</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="lower-grid" id="craft">
+          <article class="panel feature">
+            <h2>Crafted with intention.</h2>
+            <p>
+              Every element is selected to feel tactile and considered, from the soft color field
+              to the high-contrast serif headline. The layout is intentionally spacious so the
+              message has room to breathe.
+            </p>
+          </article>
+
+          <article class="panel feature" id="notes">
+            <h2>Simple, not sparse.</h2>
+            <p>
+              This concept keeps the experience clear and usable while still carrying personality.
+              The result is a thoughtful interface that feels premium without becoming precious.
+            </p>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
